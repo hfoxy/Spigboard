@@ -3,6 +3,7 @@ package me.hfox.spigboard;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
@@ -21,6 +22,7 @@ public class Spigboard {
     public Spigboard(String title) {
         this.scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
         this.objective = scoreboard.registerNewObjective("spigobjective", "dummy");
+        this.objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         setTitle(title);
 
         this.entries = new HashMap<>();

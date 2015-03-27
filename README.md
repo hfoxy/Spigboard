@@ -1,7 +1,8 @@
 Spigboard
 =========
 
-A simple scoreboard manager library for Spigot plugins
+A simple scoreboard manager library for Spigot plugins.
+Credit to RainoBoy97 is mentioned in the location where his code is used :)
 
 ## Using Spigboard in your project
 ### Maven

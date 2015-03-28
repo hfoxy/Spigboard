@@ -63,8 +63,7 @@ public class SpigboardEntry {
         score.setScore(getValue());
     }
 
-    private void create(String name) {
-        this.name = name;
+    void remove() {
         if (score != null) {
             score.getScoreboard().resetScores(score.getEntry());
         }
@@ -72,6 +71,11 @@ public class SpigboardEntry {
         if (team != null) {
             team.unregister();
         }
+    }
+
+    private void create(String name) {
+        this.name = name;
+        remove();
 
         if (name.length() <= 16) {
             score = spigboard.getObjective().getScore(name);

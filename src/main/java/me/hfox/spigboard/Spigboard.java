@@ -1,5 +1,7 @@
 package me.hfox.spigboard;
 
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -7,15 +9,13 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 public class Spigboard {
 
     private Scoreboard scoreboard;
     private Objective objective;
-    private Map<String, SpigboardEntry> entries;
+    private BiMap<String, SpigboardEntry> entries;
 
     private int teamId;
 
@@ -25,7 +25,7 @@ public class Spigboard {
         this.objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         setTitle(title);
 
-        this.entries = new HashMap<>();
+        this.entries = HashBiMap.create();
         this.teamId = 1;
     }
 
@@ -87,6 +87,23 @@ public class Spigboard {
         SpigboardEntry entry = new SpigboardEntry(key, this, value);
         entry.update(name);
         return entry;
+    }
+
+    public void remove(String key) {
+        remove(getEntry(key));
+    }
+
+    public void remove(SpigboardEntry entry) {
+        if (entry.getSpigboard() != this) {
+            throw new IllegalArgumentException("Supplied entry does not belong to this Spigboard");
+        }
+
+        String key = entries.inverse().get(entry);
+        if (key != null) {
+            entries.remove(key);
+        }
+
+        entry.remove();
     }
 
     private String create(String name) {

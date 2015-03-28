@@ -46,7 +46,7 @@ public class Spigboard {
     }
 
     public SpigboardEntry add(String name, int value) {
-        return add((String) null, name, value);
+        return add((String) null, name, value, true);
     }
 
     public SpigboardEntry add(Enum key, String name, int value) {
@@ -57,15 +57,15 @@ public class Spigboard {
         return add(key, name, value, false);
     }
 
-    public SpigboardEntry add(String name, int value, boolean overwrite) {
-        return add((String) null, name, value, overwrite);
-    }
-
     public SpigboardEntry add(Enum key, String name, int value, boolean overwrite) {
         return add(key.name(), name, value, overwrite);
     }
 
     public SpigboardEntry add(String key, String name, int value, boolean overwrite) {
+        if (key == null && !contains(name)) {
+            throw new IllegalArgumentException("Entry could not be found with the supplied name and no key was supplied");
+        }
+
         if (overwrite && contains(name)) {
             SpigboardEntry entry = getEntryByName(name);
             if (key != null && entries.get(key) != entry) {

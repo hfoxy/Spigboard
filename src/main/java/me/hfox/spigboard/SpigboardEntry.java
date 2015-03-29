@@ -58,9 +58,10 @@ public class SpigboardEntry {
             return;
         }
 
+        int value = getValue();
         score.getScoreboard().resetScores(score.getEntry());
         score = spigboard.getObjective().getScore(name);
-        score.setScore(getValue());
+        score.setScore(value);
     }
 
     void remove() {

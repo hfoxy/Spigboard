@@ -78,8 +78,9 @@ public class SpigboardEntry {
         remove();
 
         if (name.length() <= 16) {
+            int value = getValue();
             score = spigboard.getObjective().getScore(name);
-            score.setScore(getValue());
+            score.setScore(value);
             return;
         }
 

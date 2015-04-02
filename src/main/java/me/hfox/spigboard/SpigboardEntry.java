@@ -46,22 +46,21 @@ public class SpigboardEntry {
     }
 
     public void setValue(int value) {
+        if (!score.isScoreSet()) {
+            score.setScore(-1);
+        }
+
         score.setScore(value);
     }
 
     public void update(String newName) {
-        if (name == null) {
-            create(newName);
-        }
-
+        int value = getValue();
         if (newName.equals(name)) {
             return;
         }
 
-        int value = getValue();
-        score.getScoreboard().resetScores(score.getEntry());
-        score = spigboard.getObjective().getScore(name);
-        score.setScore(value);
+        create(newName);
+        setValue(value);
     }
 
     void remove() {
@@ -88,13 +87,14 @@ public class SpigboardEntry {
         // Credit to RainoBoy97 for this section here.
         team = spigboard.getScoreboard().registerNewTeam("spigboard-" + spigboard.getTeamId());
         Iterator<String> iterator = Splitter.fixedLength(16).split(name).iterator();
-        if (name.length() > 32)
+        if (name.length() > 16)
             team.setPrefix(iterator.next());
-
-        score = spigboard.getObjective().getScore(iterator.next());
-        score.setScore(getValue());
+        String entry = iterator.next();
+        score = spigboard.getObjective().getScore(entry);
         if (name.length() > 32)
             team.setSuffix(iterator.next());
+
+        team.addEntry(entry);
     }
 
 }

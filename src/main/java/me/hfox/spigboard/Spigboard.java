@@ -108,12 +108,16 @@ public class Spigboard {
     }
 
     private String create(String name) {
+        // Bukkit.getLogger().info("Name: '" + name + "' (" + name.length() + ") contains? " + contains(name));
+        int count = 0;
         while (contains(name)) {
-            name += ChatColor.RESET;
+            name = ChatColor.RESET + name;
+            // Bukkit.getLogger().info("Name: '" + name + "' (" + name.length() + ") contains? " + contains(name) + " (" + ++count + ")");
         }
 
         if (name.length() > 48) {
             name = name.substring(0, 47);
+            // Bukkit.getLogger().info("Name: '" + name + "' (" + name.length() + ") contains? " + contains(name) + " (trim)");
         }
 
         if (contains(name)) {

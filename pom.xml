@@ -6,7 +6,7 @@
 
     <groupId>me.hfox</groupId>
     <artifactId>spigboard</artifactId>
-    <version>1.0.6</version>
+    <version>1.0.7</version> <!-- DEBUG R9 -->
 
     <distributionManagement>
         <repository>

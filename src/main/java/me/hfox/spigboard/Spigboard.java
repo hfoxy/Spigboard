@@ -9,6 +9,9 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 public class Spigboard {
@@ -84,11 +87,17 @@ public class Spigboard {
             throw new IllegalArgumentException("Score already exists with that key");
         }
 
+        int count = 0;
+        String origName = name;
         if (!overwrite) {
-            name = create(name);
+            Map<Integer, String> created = create(name);
+            for (Entry<Integer, String> entry : created.entrySet()) {
+                count = entry.getKey();
+                name = entry.getValue();
+            }
         }
 
-        SpigboardEntry entry = new SpigboardEntry(key, this, value);
+        SpigboardEntry entry = new SpigboardEntry(key, this, value, origName, count);
         entry.update(name);
         entries.put(key, entry);
         return entry;
@@ -111,11 +120,12 @@ public class Spigboard {
         entry.remove();
     }
 
-    private String create(String name) {
+    private Map<Integer, String> create(String name) {
         // Bukkit.getLogger().info("Name: '" + name + "' (" + name.length() + ") contains? " + contains(name));
         int count = 0;
         while (contains(name)) {
             name = ChatColor.RESET + name;
+            count++;
             // Bukkit.getLogger().info("Name: '" + name + "' (" + name.length() + ") contains? " + contains(name) + " (" + ++count + ")");
         }
 
@@ -128,7 +138,9 @@ public class Spigboard {
             throw new IllegalArgumentException("Could not find a suitable replacement name for '" + name + "'");
         }
 
-        return name;
+        Map<Integer, String> created = new HashMap<>();
+        created.put(count, name);
+        return created;
     }
 
     public int getTeamId() {

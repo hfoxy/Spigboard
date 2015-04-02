@@ -1,6 +1,8 @@
 package me.hfox.spigboard;
 
 import com.google.common.base.Splitter;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Team;
 
@@ -15,10 +17,22 @@ public class SpigboardEntry {
     private Score score;
     private int value;
 
+    private String origName;
+    private int count;
+
     public SpigboardEntry(String key, Spigboard spigboard, int value) {
         this.key = key;
         this.spigboard = spigboard;
         this.value = value;
+        this.count = 0;
+    }
+
+    public SpigboardEntry(String key, Spigboard spigboard, int value, String origName, int count) {
+        this.key = key;
+        this.spigboard = spigboard;
+        this.value = value;
+        this.origName = origName;
+        this.count = count;
     }
 
     public String getKey() {
@@ -55,7 +69,15 @@ public class SpigboardEntry {
 
     public void update(String newName) {
         int value = getValue();
-        if (newName.equals(name)) {
+        if (origName != null && newName.equals(origName)) {
+            // String oldName = newName;
+            for (int i = 0; i < count; i++) {
+                newName = ChatColor.RESET + newName;
+            }
+
+            // Bukkit.getLogger().info("Changed '" + oldName + "' (" + oldName.length() + ") into '" + newName + "' (" + newName.length() + ")");
+        } else if (newName.equals(name)) {
+            // Bukkit.getLogger().info("Not updating '" + newName + "' because it matches previous name");
             return;
         }
 

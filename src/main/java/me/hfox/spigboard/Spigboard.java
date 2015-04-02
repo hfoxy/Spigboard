@@ -41,6 +41,10 @@ public class Spigboard {
         objective.setDisplayName(title);
     }
 
+    public BiMap<String, SpigboardEntry> getEntries() {
+        return HashBiMap.create(entries);
+    }
+
     public SpigboardEntry getEntry(String key) {
         return entries.get(key);
     }

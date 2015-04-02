@@ -86,6 +86,7 @@ public class Spigboard {
 
         SpigboardEntry entry = new SpigboardEntry(key, this, value);
         entry.update(name);
+        entries.put(key, entry);
         return entry;
     }
 
@@ -107,8 +108,7 @@ public class Spigboard {
     }
 
     private String create(String name) {
-        Set<String> scores = scoreboard.getEntries();
-        while (scores.contains(name)) {
+        while (contains(name)) {
             name += ChatColor.RESET;
         }
 
@@ -116,7 +116,7 @@ public class Spigboard {
             name = name.substring(0, 47);
         }
 
-        if (scores.contains(name)) {
+        if (contains(name)) {
             throw new IllegalArgumentException("Could not find a suitable replacement name for '" + name + "'");
         }
 

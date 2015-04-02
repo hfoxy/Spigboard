@@ -88,7 +88,9 @@ public class SpigboardEntry {
         // Credit to RainoBoy97 for this section here.
         team = spigboard.getScoreboard().registerNewTeam("spigboard-" + spigboard.getTeamId());
         Iterator<String> iterator = Splitter.fixedLength(16).split(name).iterator();
-        team.setPrefix(iterator.next());
+        if (name.length() > 32)
+            team.setPrefix(iterator.next());
+
         score = spigboard.getObjective().getScore(iterator.next());
         score.setScore(getValue());
         if (name.length() > 32)

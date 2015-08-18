@@ -11,7 +11,7 @@ Credit to RainoBoy97 is mentioned in the location where his code is used :)
 ```xml
 <repository>
     <id>komp-repo</id>
-    <url>http://repo.kompking.info/nexus/content/groups/public</url>
+    <url>http://pomhub.uk/content/groups/public</url>
 </repository>
 ```
 
@@ -20,7 +20,7 @@ Credit to RainoBoy97 is mentioned in the location where his code is used :)
 <dependency>
     <groupId>me.hfox</groupId>
     <artifactId>spigboard</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.7</version>
 </dependency>
 ```
 

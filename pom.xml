@@ -6,16 +6,16 @@
 
     <groupId>me.hfox</groupId>
     <artifactId>spigboard</artifactId>
-    <version>1.0.7</version> <!-- DEBUG R9 -->
+    <version>1.1.0</version>
 
     <distributionManagement>
         <repository>
-            <id>komp-releases</id>
-            <url>http://pomhub.uk/content/repositories/releases</url>
+            <id>hfox-releases</id>
+            <url>https://nexus.hfox.uk/repository/maven-releases/</url>
         </repository>
         <snapshotRepository>
-            <id>komp-snapshots</id>
-            <url>http://pomhub.uk/content/repositories/snapshots</url>
+            <id>hfox-snapshots</id>
+            <url>https://nexus.hfox.uk/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 
@@ -30,7 +30,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.8.3-R0.1-SNAPSHOT</version>
+            <version>1.12.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

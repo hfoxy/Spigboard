@@ -10,8 +10,8 @@ Credit to RainoBoy97 is mentioned in the location where his code is used :)
 **Repository**
 ```xml
 <repository>
-    <id>komp-repo</id>
-    <url>http://pomhub.uk/content/groups/public</url>
+    <id>hfox-public</id>
+    <url>https://nexus.hfox.uk/repository/maven-public/</url>
 </repository>
 ```
 
@@ -20,7 +20,7 @@ Credit to RainoBoy97 is mentioned in the location where his code is used :)
 <dependency>
     <groupId>me.hfox</groupId>
     <artifactId>spigboard</artifactId>
-    <version>1.0.7</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
